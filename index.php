@@ -1,8 +1,6 @@
 <?php
 
 ?>
-
-
 <html>
     <head>
         <title>Welcome</title>
@@ -15,7 +13,7 @@
     </head>
     <style>
 body {
-    background-image: url("bg.jpeg");
+    background-image: url("bg7.jpg");
     margin:0; 
     padding:0;
     font-family: New Century Schoolbook, TeX Gyre Schola, serif;
@@ -27,7 +25,7 @@ body {
     font-style: oblique;
     font-weight: bolder;
     font-family:Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-    padding-left: 250px;
+    padding-left: 350px;
     padding-bottom:10px;
     float: center;
     padding-top: 70px; 
@@ -48,12 +46,14 @@ body {
   }
   .col-sm-6
   {
-      bottom:-120px;
+    position: relative;
+      font-size: 80px;
+      bottom:-80px;
   }
 </style>
     <body>
     <div class="heading">
-        <h1> STOCKS MANAGEMENT DATABASE </h1>
+        <h1>INVESTMENT CALCALUTOR</h1>
     </div>
 
         <div class="col-sm-6">
