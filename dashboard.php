@@ -103,6 +103,10 @@
             <div style="height:100px;"><img src="<?php echo $thisUser['avatar']; ?>" height="100px;" width="100px;" class="img-circle" alt="Please Select your avatar"></div>
             <p><h4><?php echo $thisUser['name'];  ?></h4> is working here since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4></p>
         </div>
+        <div class="card text-center">
+            <h2>Owners Info</h2>
+            <p>Some text..</p>
+        </div>
     </div>
 </div>
 
