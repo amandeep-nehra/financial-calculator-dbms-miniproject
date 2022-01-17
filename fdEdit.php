@@ -10,7 +10,7 @@ $sq = "SELECT * FROM user_login WHERE user_id='$id'";
 $thisUser = mysqli_fetch_assoc($conn->query($sq));
 // change rdId
 if (isset($_GET['fd_id'])) {
-    $rdId = $_GET['fd_id'];
+    $fdId = $_GET['fd_id'];
     $sql = "SELECT * from fd WHERE fd_id='$fdId' limit 1";
     $res = mysqli_fetch_assoc($conn->query($sql));
 }
@@ -18,12 +18,13 @@ if (isset($_GET['fd_id'])) {
 elseif (isset($_POST['fd_id'])) {
     $fdId = $_POST['fd_id'];
     $bankName = $_POST['bank_name'];
+    $fdComp = intval($_POST['compounding']);
     $fdPrin = floatval($_POST['fd_prin']);
     $fdDur = floatval($_POST['fd_dur']);
     $fdRate = floatval($_POST['fd_rate']);
 
     if (isset($_POST['Submit'])) {
-        $sql = "UPDATE fd SET bank_name= '$bankName', fd_prin= '$fdPrin', fd_dur= '$fdDur', fd_rate= '$ddRate'  WHERE fd_id = '$fdId';";
+        $sql = "UPDATE fd SET bank_name= '$bankName', fd_prin= '$fdPrin', fd_dur= '$fdDur', fd_rate= '$fdRate', compounding='$fdComp' WHERE fd_id = '$fdId';";
         if ($conn->query($sql) === true) {
             header('Location: fdcal.php');
         } else {
@@ -71,6 +72,12 @@ elseif (isset($_POST['fd_id'])) {
                 </section>
             </div>
             <div class="pt-20 pl-20">
+                <datalist id="complist">
+                    <option value="1">
+                    <option value="2">
+                    <option value="4">
+                    <option value="12">
+                </datalist>
                 <div class="col-sm-12" style="background-color: #282828; ">
                     <div class="text-center">
                         <h1> Edit FD </h1>
@@ -123,6 +130,16 @@ elseif (isset($_POST['fd_id'])) {
                                         <input type="number" class="login-input" name="fd_dur" value="<?php echo $res['fd_dur']; ?>" placeholder="FD Duration">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="pull-left">
+                                            <h2> Compounding: </h2>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-6 form-input pt-10">
+                                        <input type="number" class="login-input" name="compounding" list="complist" value="<?php echo $res['compounding']; ?>" placeholder="Compounding">
+                                    </div>
+                                </div>
                                 <!-- here change rdId after echo and again name -->
                                 <input type="hidden" value="<?php echo $fdId; ?>" name="fd_id">
                                 <div class="row">
@@ -136,9 +153,17 @@ elseif (isset($_POST['fd_id'])) {
                 </div>
             </div>
         </div>
-
+        <div class="rightcolumn">
+        <div class="card text-center">
+            <h2>About User</h2>
+            <p>
+                Logged in as
+            <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+            </p>
+        </div>
     </div>
-
+    </div>
+    
     <?php include('footer.php') ?>
 </body>
 

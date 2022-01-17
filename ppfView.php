@@ -112,7 +112,7 @@ if (isset($_GET['ppf_id'])) {
 
 
                             <div class="row text-center">
-                            <!-- change rd_id to __id, change even the links-->
+                                <!-- change rd_id to __id, change even the links-->
                                 <a href="ppfEdit.php?ppf_id=<?php echo $res['ppf_id']; ?>"><button class="btn btn-warning">Edit</button></a>
                                 <a href="ppfDelete.php?ppf_id=<?php echo $res['ppf_id']; ?>"><button class="btn btn-danger">Delete</button></a>
                             </div>
@@ -121,9 +121,17 @@ if (isset($_GET['ppf_id'])) {
                 </div>
             </div>
         </div>
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
+
     <?php include('footer.php') ?>
 </body>
 

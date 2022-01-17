@@ -12,9 +12,10 @@ if (isset($_POST['submit'])) {
     $bankName = $_POST['bank_name'];
     $fdPrin = $_POST['fd_prin'];
     $fdDur = $_POST['fd_dur'];
+    $fdComp = $_POST['compunding'];
     $fdRate = $_POST['fd_rate'];
 
-    $sql = "INSERT INTO fd(user_id, bank_name, fd_prin, fd_dur, fd_rate) VALUES ('$id', '$bankName', '$fdPrin', '$fdDur', '$fdRate')";
+    $sql = "INSERT INTO fd(user_id, bank_name, fd_prin, fd_dur, compounding, fd_rate) VALUES ('$id', '$bankName', '$fdPrin', '$fdDur', '$fdComp', '$fdRate')";
     if ($conn->query($sql) === true) {
         $m = "Investment Inserted!";
     }
@@ -77,6 +78,12 @@ $res = $conn->query($sql);
                                     <h2 class="modal-title" id="exampleModalScrollableTitle">Add New Investment</h2>
                                 </div>
                                 <div class="modal-body">
+                                    <datalist id="complist">
+                                        <option value="1">
+                                        <option value="2">
+                                        <option value="4">
+                                        <option value="12">
+                                    </datalist>
                                     <!-- change file name -->
                                     <form method="POST" action="fdcal.php" enctype="multipart/form-data">
                                         <div class="form-group pt-20">
@@ -112,6 +119,14 @@ $res = $conn->query($sql);
                                                 <input name="fd_dur" type="number" step="any" class="login-input" placeholder="Enter Time in years" id="fdDur" required>
                                             </div>
                                         </div>
+                                        <div class="form-group pt-20">
+                                            <div class="col-sm-4">
+                                                <label for="compounding" class="pr-10"> Compounding </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input name="compounding" type="number" list="complist" class="login-input" placeholder="1:Yr, 2:HlfYr, 4:Qtr, 12:Mnth" id="fdComp" required>
+                                            </div>
+                                        </div>
                                         <div class="form-group" style="text-align: center;">
                                             <button type="submit" value="submit" name="submit" class="btn btn-success">Add</button>
                                         </div>
@@ -133,6 +148,7 @@ $res = $conn->query($sql);
                                     <th data-field="fd_prin" data-filter-control="select" data-sortable="true"> Principal </th>
                                     <th data-field="fd_rate" data-sortable="true">Rate</th>
                                     <th data-field="fd_dur" data-sortable="true">Duration</th>
+                                    <th data-field="compounding" data-sortable="true">Compounding</th>
                                     <th data-field="fd_return" data-sortable="true"> Return</th>
                                 </tr>
                             </thead>
@@ -150,13 +166,12 @@ $res = $conn->query($sql);
 
                                         echo "<td>" . $row['fd_dur'] . "</td>";
 
+                                        echo "<td>" . $row['compounding'] . "</td>";
+
                                         echo "<td>" . $row['fd_return'] . "</td>";
 
-                                        // echo "<a href='editProduct.php?fd_id=" . $row['id'] . "' class='btn btn-warning btn-sm'>" .
-                                        //     "<span class='glyphicon glyphicon-pencil'></span> </a>";
-
-                                        // echo "<a href='deleteProduct.php?fd_id=" . $row['id'] . "' class='btn btn-danger btn-sm'>" .
-                                        //     "<span class='glyphicon glyphicon-trash'></span> </a></td>";
+                                        echo "<td><a href='fdView.php?fd_id=" . $row['fd_id'] . "' class='btn btn-success btn-sm'>" .
+                                            "<span class='glyphicon glyphicon-eye-open'></span> </a>";
                                     }
                                 } else {
                                     echo "No results found!";
@@ -169,8 +184,17 @@ $res = $conn->query($sql);
                 </div>
             </div>
         </div>
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
-    </div>
+
     <?php include('footer.php') ?>
 </body>
 

@@ -102,6 +102,16 @@ if (isset($_GET['fd_id'])) {
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label class="pull-left">
+                                        <h2> Compounding:</h2>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h2 style="color: whitesmoke;"><?php echo $res['compounding'] ?></h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="pull-left">
                                         <h2> FD Return:</h2>
                                     </label>
                                 </div>
@@ -111,19 +121,28 @@ if (isset($_GET['fd_id'])) {
                             </div>
 
 
+
                             <div class="row text-center">
-                            <!-- change rd_id to __id, change even the links-->
-                                <a href="fdEdit.php?rd_id=<?php echo $res['fd_id']; ?>"><button class="btn btn-warning">Edit</button></a>
-                                <a href="fdDelete.php?rd_id=<?php echo $res['fd_id']; ?>"><button class="btn btn-danger">Delete</button></a>
+                                <!-- change rd_id to __id, change even the links-->
+                                <a href="fdEdit.php?fd_id=<?php echo $res['fd_id']; ?>"><button class="btn btn-warning">Edit</button></a>
+                                <a href="fdDelete.php?fd_id=<?php echo $res['fd_id']; ?>"><button class="btn btn-danger">Delete</button></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
+
     <?php include('footer.php') ?>
 </body>
 

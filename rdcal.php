@@ -29,6 +29,7 @@ $res = $conn->query($sql);
 
 <head>
     <title> RD </title>
+    <!-- change title -->
     <link rel="stylesheet" type="text/css" href="css/products.css">
 </head>
 
@@ -106,7 +107,7 @@ $res = $conn->query($sql);
                                         </div>
                                         <div class="form-group pt-20">
                                             <div class="col-sm-4">
-                                                <label for="rd_tenure" class="pr-10"> RD Tenure (in years) </label>
+                                                <label for="rd_tenure" class="pr-10"> RD Tenure (in Years)</label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <input name="rd_tenure" type="number" step="any" class="login-input" placeholder="Enter Time in Years" id="rdTenure" required>
@@ -152,11 +153,8 @@ $res = $conn->query($sql);
 
                                         echo "<td>" . $row['rd_return'] . "</td>";
 
-                                        // echo "<a href='editProduct.php?rd_id=" . $row['id'] . "' class='btn btn-warning btn-sm'>" .
-                                        //     "<span class='glyphicon glyphicon-pencil'></span> </a>";
-
-                                        // echo "<a href='deleteProduct.php?rd_id=" . $row['id'] . "' class='btn btn-danger btn-sm'>" .
-                                        //     "<span class='glyphicon glyphicon-trash'></span> </a></td>";
+                                        echo "<td><a href='rdView.php?rd_id=" . $row['rd_id'] . "' class='btn btn-success btn-sm'>" .
+                                            "<span class='glyphicon glyphicon-eye-open'></span> </a>";
                                     }
                                 } else {
                                     echo "No results found!";
@@ -169,8 +167,17 @@ $res = $conn->query($sql);
                 </div>
             </div>
         </div>
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
-    </div>
+
     <?php include('footer.php') ?>
 </body>
 

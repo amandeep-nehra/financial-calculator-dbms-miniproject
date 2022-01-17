@@ -100,7 +100,7 @@ elseif (isset($_POST['rd_id'])) {
                                         </label>
                                     </div>
                                     <div class="col-sm-6 form-input pt-10">
-                                        <input type="number" class="login-input" name="rd_prin" value="<?php echo $res['rd_prin']; ?>" placeholder="RD Principal">
+                                        <input type="number" step="any" class="login-input" name="rd_prin" value="<?php echo $res['rd_prin']; ?>" placeholder="RD Principal">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -110,7 +110,7 @@ elseif (isset($_POST['rd_id'])) {
                                         </label>
                                     </div>
                                     <div class="col-sm-6 form-input pt-10">
-                                        <input type="number" class="login-input" name="rd_rate" value="<?php echo $res['rd_rate']; ?>" placeholder="RD Annual Rate of Interest">
+                                        <input type="number" step="any" class="login-input" name="rd_rate" value="<?php echo $res['rd_rate']; ?>" placeholder="RD Annual Rate of Interest">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -120,7 +120,7 @@ elseif (isset($_POST['rd_id'])) {
                                         </label>
                                     </div>
                                     <div class="col-sm-6 form-input pt-10">
-                                        <input type="number" class="login-input" name="rd_tenure" value="<?php echo $res['rd_tenure']; ?>" placeholder="RD Tenure">
+                                        <input type="number" step="any" class="login-input" name="rd_tenure" value="<?php echo $res['rd_tenure']; ?>" placeholder="RD Tenure">
                                     </div>
                                 </div>
                                 <!-- here change rdId after echo and again name -->
@@ -136,7 +136,15 @@ elseif (isset($_POST['rd_id'])) {
                 </div>
             </div>
         </div>
-
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
 
     <?php include('footer.php') ?>

@@ -129,7 +129,18 @@ $res = mysqli_fetch_assoc($conn->query($sql));
                 </div>
             </div>
         </div>
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
+
+
 
     <?php include('footer.php') ?>
 </body>

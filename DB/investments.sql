@@ -45,7 +45,7 @@ CREATE TABLE `fd` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `fd_BEFORE_INSERT` BEFORE INSERT ON `fd` FOR EACH ROW BEGIN
+CREATE TRIGGER `fd_BEFORE_INSERT` BEFORE INSERT ON `fd` FOR EACH ROW BEGIN
 DECLARE a DECIMAL(10,2);
 DECLARE b DECIMAL(10,2);
 DECLARE c DECIMAL(10,2);
@@ -66,7 +66,7 @@ WHILE i<c DO
 	END;
     END WHILE;
 SET NEW.fd_return = NEW.fd_prin * d;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -81,7 +81,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `fd_BEFORE_UPDATE` BEFORE UPDATE ON `fd` FOR EACH ROW BEGIN
+CREATE TRIGGER `fd_BEFORE_UPDATE` BEFORE UPDATE ON `fd` FOR EACH ROW BEGIN
 DECLARE a DECIMAL(10,2);
 DECLARE b DECIMAL(10,2);
 DECLARE c DECIMAL(10,2);
@@ -102,7 +102,7 @@ WHILE i<c DO
 	END;
     END WHILE;
 SET NEW.fd_return = NEW.fd_prin * d;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -138,7 +138,7 @@ CREATE TABLE `ppf` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `ppf_BEFORE_INSERT` BEFORE INSERT ON `ppf` FOR EACH ROW BEGIN
+CREATE TRIGGER `ppf_BEFORE_INSERT` BEFORE INSERT ON `ppf` FOR EACH ROW BEGIN
 DECLARE si DECIMAL(10,2);
 DECLARE i DECIMAL(10,2);
 DECLARE t DECIMAL(10,2);
@@ -165,7 +165,7 @@ SET si=p*r;
 SET si=si/100;
 SET a=p+si;
 SET NEW.ppf_return=a;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -180,7 +180,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `ppf_BEFORE_UPDATE` BEFORE UPDATE ON `ppf` FOR EACH ROW BEGIN
+CREATE TRIGGER `ppf_BEFORE_UPDATE` BEFORE UPDATE ON `ppf` FOR EACH ROW BEGIN
 DECLARE si DECIMAL(10,2);
 DECLARE i DECIMAL(10,2);
 DECLARE t DECIMAL(10,2);
@@ -207,7 +207,7 @@ SET si=p*r;
 SET si=si/100;
 SET a=p+si;
 SET NEW.ppf_return=a;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -243,7 +243,7 @@ CREATE TABLE `rd` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `rd_BEFORE_INSERT` BEFORE INSERT ON `rd` FOR EACH ROW BEGIN
+CREATE TRIGGER `rd_BEFORE_INSERT` BEFORE INSERT ON `rd` FOR EACH ROW BEGIN
 DECLARE i DECIMAL(10,4);
 DECLARE n INT;
 DECLARE a DECIMAL(10,4);
@@ -260,7 +260,7 @@ SET c=1-d;
 SET b=a-1;
 SET b=b*NEW.rd_prin;
 SET NEW.rd_return = b/c;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -275,7 +275,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `rd_BEFORE_UPDATE` BEFORE UPDATE ON `rd` FOR EACH ROW BEGIN
+CREATE TRIGGER `rd_BEFORE_UPDATE` BEFORE UPDATE ON `rd` FOR EACH ROW BEGIN
 DECLARE i DECIMAL(10,4);
 DECLARE n INT;
 DECLARE a DECIMAL(10,4);
@@ -292,7 +292,7 @@ SET c=1-d;
 SET b=a-1;
 SET b=b*NEW.rd_prin;
 SET NEW.rd_return = b/c;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -328,9 +328,9 @@ CREATE TABLE `stocks` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `stocks_BEFORE_INSERT` BEFORE INSERT ON `stocks` FOR EACH ROW BEGIN
+CREATE TRIGGER `stocks_BEFORE_INSERT` BEFORE INSERT ON `stocks` FOR EACH ROW BEGIN
 SET NEW.stock_return = NEW.close_price - NEW.open_price + NEW.dividend;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -345,9 +345,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `stocks_BEFORE_UPDATE` BEFORE UPDATE ON `stocks` FOR EACH ROW BEGIN
+CREATE TRIGGER `stocks_BEFORE_UPDATE` BEFORE UPDATE ON `stocks` FOR EACH ROW BEGIN
 SET NEW.stock_return = NEW.close_price - NEW.open_price + NEW.dividend;
-END */;;
+END;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -375,7 +375,7 @@ CREATE TABLE `user_login` (
 --
 -- Dumping routines for database 'investments'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `neg_expo` */;
+DROP PROCEDURE IF EXISTS `neg_expo`;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;

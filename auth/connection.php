@@ -1,11 +1,12 @@
 <?php
     function connect(){
         $dbHost= "localhost";
-        $user= "root";
-        $pass= "";
-        $dbname="inventory_project";
+        $username= "root";
+        $passwd= "";
+        $dbName="investments";
+        $port= 3307;
 
-        $conn= new mysqli($dbHost, $user, $pass, $dbname);
+        $conn= $mysqli = new mysqli($dbHost, $username, $passwd, $dbName, $port); 
         //echo "connected";
         return $conn;
     }

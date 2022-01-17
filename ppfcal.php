@@ -109,7 +109,7 @@ $res = $conn->query($sql);
                                                 <label for="ppf_year" class="pr-10"> PPF Years Duration(minimum 15 years) </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="ppf_year" type="number" step="any" class="login-input" placeholder="Enter Time (Min 15 years)" id="ppfYear" required>
+                                                <input name="ppf_year" type="number" step="any" min="15" class="login-input" placeholder="Enter Time (Min 15 years)" id="ppfYear" required>
                                             </div>
                                         </div>
                                         <div class="form-group" style="text-align: center;">
@@ -152,11 +152,8 @@ $res = $conn->query($sql);
 
                                         echo "<td>" . $row['ppf_return'] . "</td>";
 
-                                        // echo "<a href='editProduct.php?ppf_id=" . $row['id'] . "' class='btn btn-warning btn-sm'>" .
-                                        //     "<span class='glyphicon glyphicon-pencil'></span> </a>";
-
-                                        // echo "<a href='deleteProduct.php?ppf_id=" . $row['id'] . "' class='btn btn-danger btn-sm'>" .
-                                        //     "<span class='glyphicon glyphicon-trash'></span> </a></td>";
+                                        echo "<td><a href='ppfView.php?ppf_id=" . $row['ppf_id'] . "' class='btn btn-success btn-sm'>" .
+                                            "<span class='glyphicon glyphicon-eye-open'></span> </a>";
                                     }
                                 } else {
                                     echo "No results found!";
@@ -169,8 +166,17 @@ $res = $conn->query($sql);
                 </div>
             </div>
         </div>
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
-    </div>
+
     <?php include('footer.php') ?>
 </body>
 

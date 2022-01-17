@@ -11,7 +11,7 @@ $thisUser = mysqli_fetch_assoc($conn->query($sq));
 // change rdId
 if (isset($_GET['stock_id'])) {
     $stockId = $_GET['stock_id'];
-    $sql = "SELECT * from stock WHERE stock_id='$stockId' limit 1";
+    $sql = "SELECT * from stocks WHERE stock_id='$stockId' limit 1";
     $res = mysqli_fetch_assoc($conn->query($sql));
 }
 // change everything including links VERY CAREFULLY!!!!
@@ -25,10 +25,10 @@ elseif (isset($_POST['stock_id'])) {
     if (isset($_POST['Submit'])) {
         $sql = "UPDATE stocks SET stock_name= '$stockName', open_price= '$sOpen', close_price= '$sClose', dividend= '$sDividend'  WHERE stock_id = '$stockId';";
         if ($conn->query($sql) === true) {
-            header('Location: stockcal.php');
+            header('Location: stockscal.php');
         } else {
             $m = "Connection Failure!";
-            header("Location: stockEdit.php?stock_id=$stockId");
+            header("Location: stocksEdit.php?stock_id=$stockId");
         }
     }
 }
@@ -38,7 +38,7 @@ elseif (isset($_POST['stock_id'])) {
 <html>
 
 <head>
-    <title> STOCKS </title>
+    <title> Stocks </title>
     <!-- change title -->
     <link rel="stylesheet" type="text/css" href="css/products.css">
 </head>
@@ -73,7 +73,7 @@ elseif (isset($_POST['stock_id'])) {
             <div class="pt-20 pl-20">
                 <div class="col-sm-12" style="background-color: #282828; ">
                     <div class="text-center">
-                        <h1> Edit STOCKS </h1>
+                        <h1> Edit Stocks </h1>
                         <!-- change title -->
                         <h2> <?php echo $m; ?> </h2>
                     </div>
@@ -100,7 +100,7 @@ elseif (isset($_POST['stock_id'])) {
                                         </label>
                                     </div>
                                     <div class="col-sm-6 form-input pt-10">
-                                        <input type="number" class="login-input" name="open_price" value="<?php echo $res['open_price']; ?>" placeholder="Opening Price">
+                                        <input type="number" step="any" class="login-input" name="open_price" value="<?php echo $res['open_price']; ?>" placeholder="Opening Price">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -110,7 +110,7 @@ elseif (isset($_POST['stock_id'])) {
                                         </label>
                                     </div>
                                     <div class="col-sm-6 form-input pt-10">
-                                        <input type="number" class="login-input" name="close_price" value="<?php echo $res['close_price']; ?>" placeholder="Closing Price">
+                                        <input type="number" step="any" class="login-input" name="close_price" value="<?php echo $res['close_price']; ?>" placeholder="Closing Price">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -120,7 +120,7 @@ elseif (isset($_POST['stock_id'])) {
                                         </label>
                                     </div>
                                     <div class="col-sm-6 form-input pt-10">
-                                        <input type="number" class="login-input" name="dividend" value="<?php echo $res['dividend']; ?>" placeholder="Dividend">
+                                        <input type="number" step="any" class="login-input" name="dividend" value="<?php echo $res['dividend']; ?>" placeholder="Dividend">
                                     </div>
                                 </div>
                                 <!-- here change rdId after echo and again name -->
@@ -136,7 +136,15 @@ elseif (isset($_POST['stock_id'])) {
                 </div>
             </div>
         </div>
-
+        <div class="rightcolumn">
+            <div class="card text-center">
+                <h2>About User</h2>
+                <p>
+                    Logged in as
+                <h4><?php echo $thisUser['name'];  ?></h4> since <h4><?php echo date('F j, Y', strtotime($thisUser['created_at'])); ?></h4>
+                </p>
+            </div>
+        </div>
     </div>
 
     <?php include('footer.php') ?>
