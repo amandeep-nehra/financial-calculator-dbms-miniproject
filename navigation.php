@@ -32,13 +32,9 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar-inverse">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" style="color: white;">
-                    <li><a class="active" href="dashboard.php">MyInventory</a></li>
-                    <li><a href="products.php">Products</a></li>
+                    <li><a class="active" href="dashboard.php">DASHBOARD</a></li>
                     <li><a href="users.php">Users</a></li>
                     <?php
-                    if($thisUser['is_admin']==1){
-                        echo '<li><a href="customer.php">Customers</a></li>';
-                    }
                     ?>
 
                     <li style="float: right;"><a href="logout.php" style="padding: 0px 20px 0px 0px;"><button class="btn btn-danger navbar-btn pull-right">Logout</button></a></li>
