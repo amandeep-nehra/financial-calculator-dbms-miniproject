@@ -106,10 +106,10 @@ $res = $conn->query($sql);
                                         </div>
                                         <div class="form-group pt-20">
                                             <div class="col-sm-4">
-                                                <label for="ppf_year" class="pr-10"> PPF Years Duration </label>
+                                                <label for="ppf_year" class="pr-10"> PPF Years Duration(minimum 15 years) </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="ppf_year" type="number" step="any" class="login-input" placeholder="Enter Time in Months" id="ppfYear" required>
+                                                <input name="ppf_year" type="number" step="any" class="login-input" placeholder="Enter Time (Min 15 years)" id="ppfYear" required>
                                             </div>
                                         </div>
                                         <div class="form-group" style="text-align: center;">
