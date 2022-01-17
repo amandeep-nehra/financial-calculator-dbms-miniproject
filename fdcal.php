@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-$sql = "SELECT * from fd"; // change name
+$sql = "SELECT * from fd WHERE user_id=$id"; // change name
 $res = $conn->query($sql);
 
 ?>
