@@ -92,7 +92,7 @@ if (isset($_GET['rd_id'])) {
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label class="pull-left">
-                                        <h2> RD Tenure in Months:</h2>
+                                        <h2> RD Tenure in Years:</h2>
                                     </label>
                                 </div>
                                 <div class="col-sm-6">
