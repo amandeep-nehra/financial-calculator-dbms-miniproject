@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $fdDur = $_POST['fd_dur'];
     $fdRate = $_POST['fd_rate'];
 
-    $sql = "INSERT INTO fd(user_id, bank_name, fd_prin, fd_tenure, fd_rate) VALUES ('$id', '$bankName', '$fdPrin', '$fdDur', '$fdRate')";
+    $sql = "INSERT INTO fd(user_id, bank_name, fd_prin, fd_dur, fd_rate) VALUES ('$id', '$bankName', '$fdPrin', '$fdDur', '$fdRate')";
     if ($conn->query($sql) === true) {
         $m = "Investment Inserted!";
     }
@@ -109,7 +109,7 @@ $res = $conn->query($sql);
                                                 <label for="fd_dur" class="pr-10"> FD Duration </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="fd_dur" type="number" step="any" class="login-input" placeholder="Enter Time in Months" id="fdDur" required>
+                                                <input name="fd_dur" type="number" step="any" class="login-input" placeholder="Enter Time in years" id="fdDur" required>
                                             </div>
                                         </div>
                                         <div class="form-group" style="text-align: center;">
