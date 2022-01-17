@@ -6,6 +6,7 @@ $conn = connect();
 $id = $_SESSION['userid'];
 $sq = "SELECT * FROM user_login WHERE user_id='$id'";
 $thisUser = mysqli_fetch_assoc($conn->query($sq));
+// change rd_id and in location
 if (isset($_GET['rd_id'])) {
     $rdId = $_GET['rd_id'];
 } elseif ($_POST['Submit']) {
@@ -14,7 +15,7 @@ if (isset($_GET['rd_id'])) {
     $conn->query($sql);
     header("Location: rdcal.php");
 }
-
+// change rd_id
 $sql = "SELECT * from rd WHERE rd_id='$rdId' limit 1";
 $res = mysqli_fetch_assoc($conn->query($sql));
 
@@ -63,6 +64,7 @@ $res = mysqli_fetch_assoc($conn->query($sql));
                     </div>
                     <div class="row pt-20">
                         <div class="col-sm-7">
+                            <!-- change all names and placeholders -->
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label class="pull-left">
@@ -114,6 +116,7 @@ $res = mysqli_fetch_assoc($conn->query($sql));
                                 </div>
                             </div>
                             <form method="POST" action="rdDelete.php">
+                                <!-- change the action link above and do changes below -->
                                 <input type="hidden" value="<?php echo $res['rd_id']; ?>" name="rd_id">
                                 <div class="row">
                                     <div class="text-center">
