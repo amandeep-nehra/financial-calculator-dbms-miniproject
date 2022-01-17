@@ -9,14 +9,14 @@ $sq = "SELECT * FROM user_login WHERE user_id='$id'";
 $thisUser = mysqli_fetch_assoc($conn->query($sq));
 
 if (isset($_POST['submit'])) {
-    $stocksName = $_POST['stocks_name'];
+    $stockName = $_POST['stock_name'];
     $sOpen = $_POST['open_price'];
     $sClose = $_POST['close_price'];
     $sDividend = $_POST['dividend'];
 
-    $sql = "INSERT INTO stocks(user_id, stocks_name, open_price, close_price, dividend) VALUES ('$id', '$stocksName', '$sOpen', '$sClose', '$sDividend')";
+    $sql = "INSERT INTO stocks(user_id, stock_name, open_price, close_price, dividend) VALUES ('$id', '$stockName', '$sOpen', '$sClose', '$sDividend')";
     if ($conn->query($sql) === true) {
-        $m = "Investment Inserted!";
+        $m = "Stock Inserted!";
     }
 }
 
@@ -28,7 +28,7 @@ $res = $conn->query($sql);
 <html>
 
 <head>
-    <title> STOCKS </title>
+    <title> Stock </title>
     <link rel="stylesheet" type="text/css" href="css/products.css">
 </head>
 
@@ -62,7 +62,7 @@ $res = $conn->query($sql);
             <div class="card">
                 <div class="text-center">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProduct">
-                        Add STOCKS New Investment Plan
+                        Add Stocks Performance
                     </button>
                     <!-- change name above -->
                     <h2><?php echo $m; ?></h2>
@@ -74,26 +74,26 @@ $res = $conn->query($sql);
                                     <button style="background-color: #ffce00;" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    <h2 class="modal-title" id="exampleModalScrollableTitle">Add New Investment</h2>
+                                    <h2 class="modal-title" id="exampleModalScrollableTitle">Add New Stock</h2>
                                 </div>
                                 <div class="modal-body">
                                     <!-- change file name -->
-                                    <form method="POST" action="ppfcal.php" enctype="multipart/form-data">
+                                    <form method="POST" action="stockscal.php" enctype="multipart/form-data">
                                         <div class="form-group pt-20">
                                             <!-- changes start from here, change name and id -->
                                             <div class="col-sm-4">
-                                                <label for="stocks_name" class="pr-10"> Stocks Name</label>
+                                                <label for="stock_name" class="pr-10"> Stocks Name</label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="stocks_name" type="text" class="login-input" placeholder="Stocks Name" id="StocksName" required>
+                                                <input name="stock_name" type="text" class="login-input" placeholder="Stock Name" id="StockName" required>
                                             </div>
                                         </div>
                                         <div class="form-group pt-20">
                                             <div class="col-sm-4">
-                                                <label for="open_year" class="pr-10"> Stocks Opening Price</label>
+                                                <label for="open_price" class="pr-10"> Stocks Opening Price</label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="open_year" type="number" step="any" class="login-input" placeholder="Enter Prinicpal Amount" id="sOpen" required>
+                                                <input name="open_price" type="number" step="any" class="login-input" placeholder="Enter Stock Opening Price" id="sOpen" required>
                                             </div>
                                         </div>
                                         <div class="form-group pt-20">
@@ -101,7 +101,7 @@ $res = $conn->query($sql);
                                                 <label for="close_price" class="pr-10"> Stocks Closing Price </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="close_price" type="number" step="any" class="login-input" placeholder="Enter Annual Rate of Interest" id="sClose" required>
+                                                <input name="close_price" type="number" step="any" class="login-input" placeholder="Enter Stock Closing Price" id="sClose" required>
                                             </div>
                                         </div>
                                         <div class="form-group pt-20">
@@ -109,7 +109,7 @@ $res = $conn->query($sql);
                                                 <label for="dividend" class="pr-10"> Dividend </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="dividend" type="number" step="any" class="login-input" placeholder="Enter Dividend" id="sDividend" required>
+                                                <input name="dividend" type="number" step="any" class="login-input" placeholder="Enter Stock Dividend" id="sDividend" required>
                                             </div>
                                         </div>
                                         <div class="form-group" style="text-align: center;">
@@ -123,13 +123,13 @@ $res = $conn->query($sql);
                 </div>
                 <div class="table_container">
                     <!-- change to FD.. table -->
-                    <h1 style="text-align: center;">Stocks Investment Table</h1>
+                    <h1 style="text-align: center;">Stocks Performance Table</h1>
                     <div class="table-responsive">
                         <table class="table table-dark" id="table" data-toggle="table" data-search="true" data-filter-control="true" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                             <thead class="thead-light">
                                 <tr>
                                     <!-- changes here -->
-                                    <th data-field="stocks_name" data-filter-control="select" data-sortable="true">Stocks Name</th>
+                                    <th data-field="stock_name" data-filter-control="select" data-sortable="true">Stocks Name</th>
                                     <th data-field="open_price" data-filter-control="select" data-sortable="true"> Opening Price</th>
                                     <th data-field="close_price" data-sortable="true">Closing Price</th>
                                     <th data-field="dividend" data-sortable="true">Dividend</th>
@@ -142,7 +142,7 @@ $res = $conn->query($sql);
                                     while ($row = mysqli_fetch_assoc($res)) {
                                         echo "<tr>";
                                         // change name acc to db column names
-                                        echo "<td>" . $row['stocks_name'] . "</td>";
+                                        echo "<td>" . $row['stock_name'] . "</td>";
 
                                         echo "<td>" . $row['open_price'] . "</td>";
 
