@@ -15,6 +15,46 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `user_login`
+--
+
+DROP TABLE IF EXISTS `user_login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_login` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `email` varchar(70) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `last_login_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+ALTER TABLE `user_login`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username_UNIQUE` (`username`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user_login`
+--
+ALTER TABLE `user_login`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
 --
 -- Table structure for table `fd`
 --
@@ -349,30 +389,6 @@ CREATE TRIGGER `stocks_BEFORE_UPDATE` BEFORE UPDATE ON `stocks` FOR EACH ROW BEG
 SET NEW.stock_return = NEW.close_price - NEW.open_price + NEW.dividend;
 END;;
 DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Table structure for table `user_login`
---
-
-DROP TABLE IF EXISTS `user_login`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_login` (
-  `user_id` int(11) NOT NULL,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `email` varchar(70) DEFAULT NULL,
-  `is_active` tinyint(1) DEFAULT 1,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
-  `last_login_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping routines for database 'investments'
