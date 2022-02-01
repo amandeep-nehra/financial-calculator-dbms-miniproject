@@ -191,7 +191,7 @@ $res = $conn->query($sql);
                     Fixed deposit is a type of investment in which invested money is blocked for the tenure selected and there is a penalty charged if this amount has to be withdrawn before tenure is over i.e premature closure.
                 </p>
                 <p>
-                    NOTE: Compounding Frequency values are 1: Annual, 2: Half-Yearly, 4:Quaterly, 12: Monthly.
+                    NOTE: Compounding Frequency values are 1: Annual, 2: Half-Yearly, 4:Quarterly, 12: Monthly.
                 </p>
                 <p>
                     Our calculator follows Cumulative Scheme. In a cumulative fixed deposit scheme, the interest amount is compounded over fixed amount, i.e. a Lump Sum invested ONCE the term of the deposit and paid at maturity.
