@@ -1,25 +1,3 @@
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: investments
--- ------------------------------------------------------
--- Server version	8.0.27
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
 --
 -- Table structure for table `user_login`
 --
@@ -43,11 +21,6 @@ ALTER TABLE `user_login`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `username_UNIQUE` (`username`),
   ADD UNIQUE KEY `email_UNIQUE` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
 --
 -- AUTO_INCREMENT for table `user_login`
 --
@@ -354,6 +327,7 @@ CREATE TABLE `stocks` (
   `close_price` decimal(10,2) DEFAULT NULL,
   `dividend` decimal(10,2) DEFAULT NULL,
   `stock_return` decimal(10,2) DEFAULT NULL,
+  `volume` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`stock_id`),
   KEY `userId_idx` (`user_id`),
   CONSTRAINT `userIdstk` FOREIGN KEY (`user_id`) REFERENCES `user_login` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -369,8 +343,14 @@ CREATE TABLE `stocks` (
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE TRIGGER `stocks_BEFORE_INSERT` BEFORE INSERT ON `stocks` FOR EACH ROW BEGIN
-SET NEW.stock_return = NEW.close_price - NEW.open_price + NEW.dividend;
-END;;
+DECLARE a DECIMAL(10,4);
+DECLARE b DECIMAL(10,4);
+DECLARE c INT;
+SET a= NEW.close_price - NEW.open_price;
+SET b= a/NEW.open_price;
+SET c= b*100;
+SET NEW.stock_return = c + NEW.dividend;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -386,7 +366,13 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE TRIGGER `stocks_BEFORE_UPDATE` BEFORE UPDATE ON `stocks` FOR EACH ROW BEGIN
-SET NEW.stock_return = NEW.close_price - NEW.open_price + NEW.dividend;
+DECLARE a DECIMAL(10,4);
+DECLARE b DECIMAL(10,4);
+DECLARE c INT;
+SET a= NEW.close_price - NEW.open_price;
+SET b= a/NEW.open_price;
+SET c= b*100;
+SET NEW.stock_return = c + NEW.dividend;
 END;;
 DELIMITER ;
 
@@ -403,7 +389,7 @@ DROP PROCEDURE IF EXISTS `neg_expo`;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `neg_expo`(INOUT var DECIMAL(10,4))
+CREATE PROCEDURE `neg_expo`(INOUT var DECIMAL(10,4))
 BEGIN
 SET var = POW(var,-1/3);
 END ;;

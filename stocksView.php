@@ -82,7 +82,7 @@ if (isset($_GET['stock_id'])) {
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label class="pull-left">
-                                        <h4> Market Cap</h4>
+                                        <h4> Market Cap:</h4>
                                     </label>
                                 </div>
                                 <div class="col-sm-6">
@@ -102,7 +102,7 @@ if (isset($_GET['stock_id'])) {
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label class="pull-left">
-                                        <h4> Volume of Stocks:</h4>
+                                        <h4> Volume Of Stocks Bought:</h4>
                                     </label>
                                 </div>
                                 <div class="col-sm-6">
@@ -112,7 +112,7 @@ if (isset($_GET['stock_id'])) {
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label class="pull-left">
-                                        <h4> Stocks Return:</h4>
+                                        <h4> Return on Investment (ROI in %):</h4>
                                     </label>
                                 </div>
                                 <div class="col-sm-6">
